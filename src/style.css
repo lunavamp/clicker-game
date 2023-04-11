@@ -1,0 +1,104 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: rgb(112, 74, 148);
+  color: white;
+}
+
+#registration {
+  z-index: 1;
+}
+
+.game-container,
+#registration {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+.registration-container {
+  background-image: url("./img/background-registration.png");
+}
+
+.registration-container,
+#game-display {
+  width: 1200px;
+  height: 700px;
+  margin: 0 auto;
+  border: 7px double violet;
+  border-radius: 30px;
+  background-repeat: no-repeat;
+  background-size: 1200px;
+}
+
+.registration-form {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 600px;
+}
+
+input {
+  border: none;
+  outline: none;
+  background: none;
+  border-bottom: 3px solid #f0c3f9;
+  font-size: larger;
+  color: white;
+}
+
+label {
+  font-size: large;
+}
+
+button {
+  font-size: 20px;
+  padding: 10px 20px;
+  background-color: violet;
+  cursor: pointer;
+}
+.header {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  padding: 30px;
+}
+#name-display,
+#level-display,
+#enemy-display,
+#score-display,
+#message-display,
+#health-display {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 40px;
+  color: white;
+}
+
+#enemy-display img {
+  max-width: 380px;
+  max-height: 380px;
+}
+
+#enemy-display,
+h1,
+h2,
+h3 {
+  text-align: center;
+  margin: 20px 0;
+}
+
+#game-display {
+  background-image: url("./img/background.jpg");
+  cursor: url("./img/cursor.png"), auto;
+}
+
+#message-display {
+  margin-left: 50px;
+}
