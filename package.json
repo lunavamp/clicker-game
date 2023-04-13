@@ -1,0 +1,11 @@
+{
+  "name": "clicker-game",
+  "version": "0.0.1",
+  "author": "Kolesnichenko K.A.",
+  "scripts": {
+    "start": "node static-file-server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

@@ -46,7 +46,7 @@ class Enemy {
     this.image = image;
   }
 
-  // function to reduce enemy health when clicked by user
+  // reduce enemy health by click
   takeDamage(damage) {
     this.health -= damage;
     if (this.health <= 0) {
@@ -75,73 +75,70 @@ class Game {
     this.scoreDisplay = document.getElementById("score-display");
     this.messageDisplay = document.getElementById("message-display");
     this.nameDisplay = document.getElementById("name-display");
+    this.healthDisplay = document.getElementById("health-display");
+    this.levelDisplay = document.getElementById("level-display");
 
-    // set the name display
     this.nameDisplay.innerText = `Player: ${this.name}`;
 
-    // bind event listener to monster display
     this.enemyDisplay.addEventListener("click", () => {
       this.handleMonsterClick();
     });
 
-    // initialize the game
     this.initialize();
   }
 
+  // initialize the game
   initialize() {
-    // displaying initial score
+    // initial score
     this.scoreDisplay.innerText = `Score: ${this.score}`;
 
-    // displaying initial level and monster
+    // initial level and monster
     this.displayLevel();
     this.displayMonster();
   }
 
+  // increment score and updating score display
   handleMonsterClick() {
-    // increment score and updating score display
     this.score++;
     this.scoreDisplay.innerText = `Score: ${this.score}`;
 
-    // reduce enemy health and update health display
+    // reduce enemy health
     const enemy = this.levels[this.currentLevel].enemy;
     enemy.takeDamage(5);
-    const healthDisplay = document.getElementById("health-display");
-    healthDisplay.innerHTML = `Health: ${enemy.health}`;
+    this.healthDisplay.innerHTML = `Health: ${enemy.health}`;
 
     // check if current level target has been reached or enemy has been defeated
     if (this.score >= this.levels[this.currentLevel].targetClicks) {
-      // displaying message and progress to next level
-      this.messageDisplay.innerText = `Congratulations! You've reached level ${
-        this.levels[this.currentLevel].number + 2
-      }.`;
+      alert(
+        `Congratulations! You've reached level ${
+          this.levels[this.currentLevel].number + 2
+        }.`
+      );
       this.currentLevel++;
-      if (this.currentLevel === this.levels.length) {
-        // last level completed, player won the game
-        this.enemyDisplay.innerHTML = "";
-        this.messageDisplay.innerText = `Congratulations! You won! Your score: ${this.score}`;
-      } else {
-        // show next level monster
-        this.displayLevel();
-        this.displayMonster();
-      }
+    }
+    // last level completed, player won the game
+    if (this.currentLevel === this.levels.length) {
+      this.enemyDisplay.innerHTML = "";
+      this.messageDisplay.innerText = `Congratulations! You won! Your score: ${this.score}`;
+    } else {
+      // show next level monster
+      this.displayLevel();
+      this.displayMonster();
     }
   }
 
+  // displaying current level
   displayLevel() {
-    // displaying current level
-    const levelDisplay = document.getElementById("level-display");
-    levelDisplay.innerText = `Level ${
+    this.levelDisplay.innerText = `Level ${
       this.levels[this.currentLevel].number + 1
     }`;
   }
 
+  // displaying current monster
   displayMonster() {
-    // displaying current monster
-    const enemyDisplay = document.getElementById("enemy-display");
     const enemy = this.levels[this.currentLevel].enemy;
-    const healthDisplay = document.getElementById("health-display");
-    healthDisplay.innerHTML = `Health: ${enemy.health}`;
-    enemyDisplay.innerHTML = `
+    this.healthDisplay.innerHTML = `Health: ${enemy.health}`;
+    this.enemyDisplay.innerHTML = `
       <h3>Defeat the enemy - ${enemy.name}!</h3>
       <img src="./src/img/${enemy.image}" alt="${enemy.name}">
     `;

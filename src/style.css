@@ -94,6 +94,11 @@ h3 {
   margin: 20px 0;
 }
 
+#enemy-display {
+  margin: 0 auto;
+  max-width: 380px;
+}
+
 #game-display {
   background-image: url("./img/background.jpg");
   cursor: url("./img/cursor.png"), auto;
