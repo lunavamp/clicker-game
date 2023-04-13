@@ -119,7 +119,7 @@ class Game {
     // last level completed, player won the game
     if (this.currentLevel === this.levels.length) {
       this.enemyDisplay.innerHTML = "";
-      this.messageDisplay.innerText = `Congratulations! You won! Your score: ${this.score}`;
+      this.messageDisplay.innerText = `Congratulations! You won! Total score: ${this.score}`;
     } else {
       // show next level monster
       this.displayLevel();
@@ -140,7 +140,9 @@ class Game {
     this.healthDisplay.innerHTML = `Health: ${enemy.health}`;
     this.enemyDisplay.innerHTML = `
       <h3>Defeat the enemy - ${enemy.name}!</h3>
+      <div class="move">
       <img src="./src/img/${enemy.image}" alt="${enemy.name}">
+      </div>
     `;
   }
 }
@@ -151,5 +153,22 @@ const levels = [
   new Level(1, 30, new Enemy("Cat", 100, "enemy2.png")),
   new Level(2, 60, new Enemy("Whale", 150, "enemy3.png")),
   new Level(3, 100, new Enemy("Goblin", 200, "enemy4.png")),
-  new Level(4, 200, new Enemy("Dragon", 500, "enemy5.png")),
+  new Level(4, 160, new Enemy("Dragon", 300, "enemy5.png")),
 ];
+
+// sounds effects
+function addSoundEffects() {
+  const buttonSound = new Audio("src/sounds/button.mp3");
+  const button = document.getElementById("register");
+  button.addEventListener("click", () => {
+    buttonSound.play();
+  });
+
+  const attackSound = new Audio("src/sounds/attack.mp3");
+  const attack = document.getElementById("enemy-display");
+  attack.addEventListener("click", () => {
+    attackSound.play();
+  });
+}
+
+addSoundEffects();
